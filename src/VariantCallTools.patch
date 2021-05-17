@@ -1,0 +1,13 @@
+--- src/paths/long/VariantCallTools.cc	2021-05-12 16:02:38.877758245 +1000
++++ src/paths/long/VariantCallTools.cc.patched	2021-05-12 16:56:43.337164025 +1000
+@@ -1868,8 +1868,8 @@
+         bool i_is_indel = (change[i].first.size() != change[i].second.size());
+         if (i_is_indel) inserted_base += change[i].second.size()-1;
+         size_t j = i + 1;
+-        while (j < edits.size() && abs(edits[j].second - edits[j-1].second 
+-                    - change[j-1].first.size()) < MinClumpSep) {
++	while (j < edits.size() && abs((long double)(edits[j].second - edits[j-1].second
++                    - change[j-1].first.size()) < MinClumpSep)) {
+             nmatch += edits[j].second - edits[j-1].second - change[j-1].first.size();
+             bool j_is_indel = (change[j].first.size() != change[j].second.size());
+             if (j_is_indel) 
